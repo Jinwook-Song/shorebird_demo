@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:shorebird_demo/generated/l10n.dart';
-import 'package:shorebird_demo/view/view.dart';
+import 'package:shorebird_demo/src/view/view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

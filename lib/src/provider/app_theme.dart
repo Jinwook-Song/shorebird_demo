@@ -1,5 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:shorebird_demo/model/app_theme_model.dart';
+import 'package:shorebird_demo/src/model/app_theme_model.dart';
 
 part 'app_theme.g.dart';
 

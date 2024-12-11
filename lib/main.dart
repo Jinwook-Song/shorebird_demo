@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shorebird_demo/generated/l10n.dart';
-import 'package:shorebird_demo/providers/app_theme.dart';
-import 'package:shorebird_demo/view/view.dart';
+import 'package:shorebird_demo/src/provider/app_theme.dart';
+import 'package:shorebird_demo/src/view/view.dart';
 
 void main() {
   runApp(const ProviderScope(child: App()));

@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:shorebird_demo/generated/l10n.dart';
-import 'package:shorebird_demo/providers/app_theme.dart';
+import 'package:shorebird_demo/src/provider/app_theme.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
