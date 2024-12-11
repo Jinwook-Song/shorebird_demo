@@ -6,36 +6,32 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: 3.5.4
-  flutter: 3.24.5
+  sdk: ^3.5.4
 
 dependencies:
+  cupertino_icons: 1.0.8
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
   intl: any
 
-  cupertino_icons: 1.0.8
-
   flutter_riverpod: 2.6.1
   riverpod_annotation: 2.6.1
 
   freezed_annotation: 2.4.4
+
+  gap: 3.0.1
   json_annotation: 4.9.0
 
   just_audio: 0.9.42
 
-  gap: 3.0.1
-
 dev_dependencies:
-  flutter_lints: 4.0.0
-  custom_lint: 0.7.0
-
-  build_runner: 2.4.13
-
+  build_runner:
+  custom_lint:
   riverpod_generator: 2.6.3
-
+  riverpod_lint: 2.6.3
+  flutter_lints: 4.0.0
   freezed: 2.5.7
   json_serializable: 6.9.0
 

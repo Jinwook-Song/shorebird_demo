@@ -12,9 +12,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late final AudioPlayer _audioPlayer = AudioPlayer()
-    ..setAsset('assets/audios/effect_correct.mp3')
-    ..play();
+  final AudioPlayer _audioPlayer = AudioPlayer();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(_audioPlay);
+  }
+
+  _audioPlay(Duration _) async {
+    await _audioPlayer.setAsset('assets/audios/effect_correct.mp3');
+    await _audioPlayer.play();
+  }
 
   @override
   void dispose() {
@@ -32,12 +41,14 @@ class _HomeScreenState extends State<HomeScreen> {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const SettingsScreen(),
-                ));
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const SettingsScreen(),
+                  ),
+                );
               },
               icon: const Icon(Icons.settings),
-            )
+            ),
           ],
         ),
         body: Center(
@@ -65,10 +76,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            _audioPlayer.seek(Duration.zero).then(
-                  (_) => _audioPlayer.play(),
-                );
+          onPressed: () async {
+            await _audioPlayer.seek(Duration.zero);
+            await _audioPlayer.play();
           },
           child: const Icon(
             Icons.play_circle,
