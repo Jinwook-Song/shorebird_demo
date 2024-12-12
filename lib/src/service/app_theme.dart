@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shorebird_demo/src/source/source.dart';
 
 abstract interface class AppThemeService {
@@ -28,7 +27,3 @@ class AppThemeServiceImpl implements AppThemeService {
     return _preferenceLocalDataSource.setString(_kAppThemeKey, appTheme);
   }
 }
-
-final appThemeServiceProvider = Provider<AppThemeService>(
-  (ref) => AppThemeServiceImpl(ref.read(preferenceLocalDataSourceProvider)),
-);

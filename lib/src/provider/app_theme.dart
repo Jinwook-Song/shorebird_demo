@@ -1,13 +1,15 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shorebird_demo/src/di/di.dart';
 import 'package:shorebird_demo/src/model/model.dart';
-import 'package:shorebird_demo/src/repository/app_theme.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'app_theme.g.dart';
 
 abstract interface class AppThemeProvider {
   void toggleTheme();
 }
 
-class AppThemeProviderImpl extends Notifier<AppThemeModel>
-    implements AppThemeProvider {
+@riverpod
+class AppTheme extends _$AppTheme implements AppThemeProvider {
   @override
   AppThemeModel build() {
     return ref.watch(appThemeRepositoryProvider).getAppTheme();
@@ -30,7 +32,3 @@ class AppThemeProviderImpl extends Notifier<AppThemeModel>
     }
   }
 }
-
-final appThemeProvider = NotifierProvider<AppThemeProviderImpl, AppThemeModel>(
-  AppThemeProviderImpl.new,
-);

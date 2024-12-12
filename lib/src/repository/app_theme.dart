@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shorebird_demo/src/model/model.dart';
 import 'package:shorebird_demo/src/service/service.dart';
 
@@ -22,7 +21,3 @@ class AppThemeRepositoryImpl implements AppThemeRepository {
     return _appThemeService.setTheme(appTheme: appTheme.theme.name);
   }
 }
-
-final appThemeRepositoryProvider = Provider<AppThemeRepository>(
-  (ref) => AppThemeRepositoryImpl(ref.read(appThemeServiceProvider)),
-);

@@ -1,7 +1,5 @@
 import 'dart:async';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shorebird_demo/core/core.dart';
 
 abstract interface class PreferenceLocalDataSource {
   Future<void> setString(String key, String value);
@@ -94,7 +92,3 @@ class PreferenceLocalDataSourceImpl implements PreferenceLocalDataSource {
     return _pref.clear();
   }
 }
-
-final preferenceLocalDataSourceProvider = Provider<PreferenceLocalDataSource>(
-  (ref) => PreferenceLocalDataSourceImpl(ref.read(sharedPreferencesProvider)),
-);
