@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:shorebird_demo/generated/l10n.dart';
 import 'package:shorebird_demo/src/view/view.dart';
@@ -58,13 +57,13 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
+                spacing: 10,
                 children: [
                   Image.asset(
                     'assets/images/arrow_left_circle.png',
                     width: 40,
                     height: 40,
                   ),
-                  const Gap(20),
                   Image.asset(
                     'assets/images/arrow_right_circle.png',
                     width: 40,
@@ -80,9 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
             await _audioPlayer.seek(Duration.zero);
             await _audioPlayer.play();
           },
-          child: const Icon(
-            Icons.play_circle,
-          ),
+          child: const Icon(Icons.play_circle),
         ),
       ),
     );
