@@ -1,23 +1,36 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:shorebird_demo/src/model/app_theme_model.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shorebird_demo/src/model/model.dart';
+import 'package:shorebird_demo/src/repository/app_theme.dart';
 
-part 'app_theme.g.dart';
+abstract interface class AppThemeProvider {
+  void toggleTheme();
+}
 
-@riverpod
-class AppTheme extends _$AppTheme {
+class AppThemeProviderImpl extends Notifier<AppThemeModel>
+    implements AppThemeProvider {
   @override
   AppThemeModel build() {
-    return const AppThemeModel();
+    return ref.watch(appThemeRepositoryProvider).getAppTheme();
   }
 
-  toggleTheme() {
-    final AppThemeMode currentTheme = state.theme;
-    switch (currentTheme) {
+  @override
+  void toggleTheme() {
+    switch (state.theme) {
       case AppThemeMode.light:
+        ref.read(appThemeRepositoryProvider).setAppTheme(
+              const AppThemeModel(theme: AppThemeMode.dark),
+            );
         state = state.copyWith(theme: AppThemeMode.dark);
 
       case AppThemeMode.dark:
+        ref.read(appThemeRepositoryProvider).setAppTheme(
+              const AppThemeModel(theme: AppThemeMode.light),
+            );
         state = state.copyWith(theme: AppThemeMode.light);
     }
   }
 }
+
+final appThemeProvider = NotifierProvider<AppThemeProviderImpl, AppThemeModel>(
+  AppThemeProviderImpl.new,
+);
