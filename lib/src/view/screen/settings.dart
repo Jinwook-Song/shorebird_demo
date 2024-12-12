@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:shorebird_demo/generated/l10n.dart';
 import 'package:shorebird_demo/src/provider/app_theme.dart';
+import 'package:shorebird_demo/src/util/extension/string.dart';
 
-class SettingsScreen extends ConsumerStatefulWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
   @override
-  ConsumerState<SettingsScreen> createState() => _SettingsScreenState();
+  State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _SettingsScreenState extends ConsumerState<SettingsScreen> {
+class _SettingsScreenState extends State<SettingsScreen> {
   final AudioPlayer _audioPlayer = AudioPlayer();
 
   @override
@@ -37,13 +38,21 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       appBar: AppBar(
         title: Text(S.of(context).settingsTitle),
       ),
-      body: ListTile(
-        title: const Text('App Theme'),
-        subtitle: const Text('Light/Dark (Default: Light)'),
-        trailing: Switch.adaptive(
-          value: ref.watch(appThemeProvider).isDefaultTheme,
-          onChanged: (_) => ref.read(appThemeProvider.notifier).toggleTheme(),
-        ),
+      body: Consumer(
+        builder: (context, ref, child) {
+          final appTheme = ref.watch(appThemeProvider);
+          return ListTile(
+            title: const Text('App Theme'),
+            subtitle: Text(
+              '${appTheme.theme.name.toCapitalize()} (Default: Light)',
+            ),
+            trailing: Switch.adaptive(
+              value: appTheme.isDefaultTheme,
+              onChanged: (_) =>
+                  ref.read(appThemeProvider.notifier).toggleTheme(),
+            ),
+          );
+        },
       ),
     );
   }
