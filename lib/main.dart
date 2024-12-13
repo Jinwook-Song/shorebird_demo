@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shorebird_demo/generated/l10n.dart';
+
 import 'package:shorebird_demo/core/storage/preference.dart';
+import 'package:shorebird_demo/generated/l10n.dart';
 import 'package:shorebird_demo/src/provider/app_theme.dart';
+import 'package:shorebird_demo/src/util/util.dart';
 import 'package:shorebird_demo/src/view/view.dart';
 
 void main() async {
@@ -20,6 +22,7 @@ void main() async {
       overrides: [
         sharedPreferencesProvider.overrideWithValue(prefsWithCache),
       ],
+      observers: [ProviderLogger()],
       child: const App(),
     ),
   );

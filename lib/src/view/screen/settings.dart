@@ -42,6 +42,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
         builder: (context, ref, child) {
           final appTheme = ref.watch(appThemeProvider);
           return ListTile(
+            leading: appTheme.isDefaultTheme
+                ? const Icon(Icons.light_mode_rounded)
+                : const Icon(Icons.dark_mode_rounded),
             title: const Text('App Theme'),
             subtitle: Text(
               '${appTheme.theme.name.toCapitalize()} (Default: Light)',

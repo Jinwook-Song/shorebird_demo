@@ -16,6 +16,14 @@ class AppThemeModel with _$AppThemeModel {
 
   bool get isDefaultTheme => theme == AppThemeMode.light;
 
+  factory AppThemeModel.light() {
+    return const AppThemeModel(theme: AppThemeMode.light);
+  }
+
+  factory AppThemeModel.dark() {
+    return const AppThemeModel(theme: AppThemeMode.dark);
+  }
+
   factory AppThemeModel.fromJson(Map<String, dynamic> json) =>
       _$AppThemeModelFromJson(json);
 }

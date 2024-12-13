@@ -20,13 +20,13 @@ class AppTheme extends _$AppTheme implements AppThemeProvider {
     switch (state.theme) {
       case AppThemeMode.light:
         ref.read(appThemeRepositoryProvider).setAppTheme(
-              const AppThemeModel(theme: AppThemeMode.dark),
+              AppThemeModel.dark(),
             );
         state = state.copyWith(theme: AppThemeMode.dark);
 
       case AppThemeMode.dark:
         ref.read(appThemeRepositoryProvider).setAppTheme(
-              const AppThemeModel(theme: AppThemeMode.light),
+              AppThemeModel.light(),
             );
         state = state.copyWith(theme: AppThemeMode.light);
     }
