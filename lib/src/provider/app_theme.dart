@@ -5,6 +5,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'app_theme.g.dart';
 
 abstract interface class AppThemeProvider {
+  void setLightTheme();
+  void setDarkTheme();
   void toggleTheme();
 }
 
@@ -16,19 +18,26 @@ class AppTheme extends _$AppTheme implements AppThemeProvider {
   }
 
   @override
+  void setLightTheme() {
+    if (state.theme == AppThemeMode.light) return;
+    ref.read(appThemeRepositoryProvider).setAppTheme(AppThemeModel.light());
+    state = state.copyWith(theme: AppThemeMode.light);
+  }
+
+  @override
+  void setDarkTheme() {
+    if (state.theme == AppThemeMode.dark) return;
+    ref.read(appThemeRepositoryProvider).setAppTheme(AppThemeModel.dark());
+    state = state.copyWith(theme: AppThemeMode.dark);
+  }
+
+  @override
   void toggleTheme() {
     switch (state.theme) {
       case AppThemeMode.light:
-        ref.read(appThemeRepositoryProvider).setAppTheme(
-              AppThemeModel.dark(),
-            );
-        state = state.copyWith(theme: AppThemeMode.dark);
-
+        setDarkTheme();
       case AppThemeMode.dark:
-        ref.read(appThemeRepositoryProvider).setAppTheme(
-              AppThemeModel.light(),
-            );
-        state = state.copyWith(theme: AppThemeMode.light);
+        setLightTheme();
     }
   }
 }

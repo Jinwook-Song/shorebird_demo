@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ProviderLogger extends ProviderObserver {
@@ -8,7 +9,7 @@ class ProviderLogger extends ProviderObserver {
     ProviderContainer container,
   ) {
     super.didAddProvider(provider, value, container);
-    print('🟢 $provider, $value, $container');
+    debugPrint('🟢 $provider, $value, $container');
   }
 
   @override
@@ -19,7 +20,7 @@ class ProviderLogger extends ProviderObserver {
     ProviderContainer container,
   ) {
     super.didUpdateProvider(provider, previousValue, newValue, container);
-    print('🟠 $provider, $previousValue, $newValue,  $container');
+    debugPrint('🟠 $provider, $previousValue, $newValue,  $container');
   }
 
   @override
@@ -28,6 +29,6 @@ class ProviderLogger extends ProviderObserver {
     ProviderContainer container,
   ) {
     super.didDisposeProvider(provider, container);
-    print('🔴 $provider, $container');
+    debugPrint('🔴 $provider, $container');
   }
 }

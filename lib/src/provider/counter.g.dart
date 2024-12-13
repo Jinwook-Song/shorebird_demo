@@ -1,25 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_theme.dart';
+part of 'counter.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appThemeHash() => r'9b09a2c9eeb804856471997b8b2492bad72f563f';
+String _$counterHash() => r'7e1bd32fac9762b446b766755138ef87abc01973';
 
-/// See also [AppTheme].
-@ProviderFor(AppTheme)
-final appThemeProvider =
-    AutoDisposeNotifierProvider<AppTheme, AppThemeModel>.internal(
-  AppTheme.new,
-  name: r'appThemeProvider',
+/// See also [Counter].
+@ProviderFor(Counter)
+final counterProvider = StreamNotifierProvider<Counter, CounterModel>.internal(
+  Counter.new,
+  name: r'counterProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$appThemeHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$counterHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$AppTheme = AutoDisposeNotifier<AppThemeModel>;
+typedef _$Counter = StreamNotifier<CounterModel>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

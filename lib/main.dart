@@ -22,7 +22,7 @@ void main() async {
       overrides: [
         sharedPreferencesProvider.overrideWithValue(prefsWithCache),
       ],
-      observers: [ProviderLogger()],
+      // observers: [ProviderLogger()],
       child: const App(),
     ),
   );

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:shorebird_demo/generated/l10n.dart';
+import 'package:shorebird_demo/src/model/counter_model.dart';
+import 'package:shorebird_demo/src/provider/provider.dart';
 import 'package:shorebird_demo/src/view/view.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -51,35 +54,100 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
+          child: Consumer(
+            builder: (context, ref, child) {
+              final CounterModel couter =
+                  ref.watch(counterProvider).value ?? CounterModel.initial();
+              final color = ref.watch(appThemeProvider).isDefaultTheme
+                  ? Colors.deepOrange
+                  : Colors.amber;
+              return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                spacing: 10,
+                spacing: 20,
                 children: [
-                  Image.asset(
-                    'assets/images/arrow_left_circle.png',
-                    width: 40,
-                    height: 40,
+                  Text(
+                    '${couter.count}',
+                    style: TextStyle(
+                      fontSize: 40,
+                      color: color,
+                    ),
                   ),
-                  Image.asset(
-                    'assets/images/arrow_right_circle.png',
-                    width: 40,
-                    height: 40,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    spacing: 16,
+                    children: [
+                      GestureDetector(
+                        onTap:
+                            ref.read(appThemeProvider.notifier).setLightTheme,
+                        child: Image.asset(
+                          'assets/images/arrow_left_circle.png',
+                          color: color,
+                          width: 40,
+                          height: 40,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: ref.read(appThemeProvider.notifier).setDarkTheme,
+                        child: Image.asset(
+                          'assets/images/arrow_right_circle.png',
+                          color: color,
+                          width: 40,
+                          height: 40,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
-              ),
-            ],
+              );
+            },
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            await _audioPlayer.seek(Duration.zero);
-            await _audioPlayer.play();
+        floatingActionButton: Consumer(
+          builder: (context, ref, child) {
+            return Row(
+              mainAxisSize: MainAxisSize.min,
+              spacing: 10,
+              children: [
+                FloatingActionButton(
+                  heroTag: 'audio',
+                  onPressed: () async {
+                    await _audioPlayer.seek(Duration.zero);
+                    await _audioPlayer.play();
+                  },
+                  child: const Icon(Icons.audiotrack_rounded),
+                ),
+                ref.watch(counterProvider).maybeWhen<Widget>(
+                      data: (data) {
+                        return Row(
+                          spacing: 10,
+                          children: [
+                            FloatingActionButton(
+                              heroTag: 'play',
+                              onPressed:
+                                  ref.read(counterProvider.notifier).togglePlay,
+                              child: Icon(
+                                data.isPlay
+                                    ? Icons.pause_circle
+                                    : Icons.play_circle,
+                              ),
+                            ),
+                            FloatingActionButton(
+                              heroTag: 'reset',
+                              onPressed:
+                                  ref.read(counterProvider.notifier).reset,
+                              child: const Icon(
+                                Icons.refresh,
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                      orElse: () => const SizedBox.shrink(),
+                    ),
+              ],
+            );
           },
-          child: const Icon(Icons.play_circle),
         ),
       ),
     );
