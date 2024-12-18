@@ -36,7 +36,7 @@ class App extends ConsumerWidget {
       title: 'Flutter Demo',
       themeMode: ref.watch(appThemeProvider).themeMode,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
         useMaterial3: true,
       ),
       darkTheme: ThemeData.dark(),
