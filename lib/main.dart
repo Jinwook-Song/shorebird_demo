@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shorebird_demo/core/storage/preference.dart';
 import 'package:shorebird_demo/generated/l10n.dart';
 import 'package:shorebird_demo/src/provider/app_theme.dart';
-import 'package:shorebird_demo/src/util/util.dart';
 import 'package:shorebird_demo/src/view/view.dart';
 
 void main() async {

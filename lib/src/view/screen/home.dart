@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:shorebird_demo/generated/l10n.dart';
 import 'package:shorebird_demo/src/model/counter_model.dart';
@@ -63,7 +64,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   : Colors.amber;
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 20,
                 children: [
                   Text(
                     '${couter.count}',
@@ -72,10 +72,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: color,
                     ),
                   ),
+                  const Gap(20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    spacing: 16,
                     children: [
                       GestureDetector(
                         onTap:
@@ -87,6 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 40,
                         ),
                       ),
+                      const Gap(16),
                       GestureDetector(
                         onTap: ref.read(appThemeProvider.notifier).setDarkTheme,
                         child: Image.asset(
@@ -107,7 +108,6 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (context, ref, child) {
             return Row(
               mainAxisSize: MainAxisSize.min,
-              spacing: 10,
               children: [
                 FloatingActionButton(
                   heroTag: 'audio',
@@ -117,10 +117,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   child: const Icon(Icons.audiotrack_rounded),
                 ),
+                const Gap(10),
                 ref.watch(counterProvider).maybeWhen<Widget>(
                       data: (data) {
                         return Row(
-                          spacing: 10,
                           children: [
                             FloatingActionButton(
                               heroTag: 'play',
@@ -132,6 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     : Icons.play_circle,
                               ),
                             ),
+                            const Gap(10),
                             FloatingActionButton(
                               heroTag: 'reset',
                               onPressed:
