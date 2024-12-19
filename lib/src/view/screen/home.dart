@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('Shorebird 06'),
+                  const Text('Shorebird 09'),
                   Text(
                     '${couter.count}',
                     style: TextStyle(
