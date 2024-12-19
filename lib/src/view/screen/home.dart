@@ -5,6 +5,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:shorebird_demo/generated/l10n.dart';
 import 'package:shorebird_demo/src/model/counter_model.dart';
 import 'package:shorebird_demo/src/provider/provider.dart';
+import 'package:shorebird_demo/src/util/util.dart';
 import 'package:shorebird_demo/src/view/view.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -65,8 +66,14 @@ class _HomeScreenState extends State<HomeScreen> {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('Shorebird 10'),
+                  const Text('Shorebird 15'),
                   Text(S.of(context).intl),
+                  const Divider(),
+                  Text(ref.read(appInfoProvider).getAppName()),
+                  Text(ref.read(appInfoProvider).getPackageName()),
+                  Text(ref.read(appInfoProvider).getVersion()),
+                  Text(ref.read(appInfoProvider).getBuildNumber()),
+                  const Divider(),
                   Text(
                     '${couter.count}',
                     style: TextStyle(
