@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('Shorebird 21'),
+                  const Text('Shorebird 23'),
                   Text(S.of(context).intl),
                   const Divider(),
                   Text(ref.read(appInfoProvider).getAppName()),
@@ -154,11 +154,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             const Gap(10),
-                            FloatingActionButton(
+                            const FloatingActionButton(
                               heroTag: 'refresh',
-                              onPressed: () {
-                                setState(() {});
-                              },
+                              onPressed: AndroidChannel.restartApp,
+                              child: Icon(Icons.offline_bolt),
                             ),
                           ],
                         );
