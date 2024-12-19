@@ -7,6 +7,7 @@ import 'package:shorebird_demo/src/model/counter_model.dart';
 import 'package:shorebird_demo/src/provider/provider.dart';
 import 'package:shorebird_demo/src/util/util.dart';
 import 'package:shorebird_demo/src/view/view.dart';
+import 'package:shorebird_demo/src/view/widget/update_handler.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -66,13 +67,15 @@ class _HomeScreenState extends State<HomeScreen> {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('Shorebird 15'),
+                  const Text('Shorebird 21'),
                   Text(S.of(context).intl),
                   const Divider(),
                   Text(ref.read(appInfoProvider).getAppName()),
                   Text(ref.read(appInfoProvider).getPackageName()),
                   Text(ref.read(appInfoProvider).getVersion()),
                   Text(ref.read(appInfoProvider).getBuildNumber()),
+                  const Divider(),
+                  const UpdateHandler(),
                   const Divider(),
                   Text(
                     '${couter.count}',
@@ -149,6 +152,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: const Icon(
                                 Icons.refresh,
                               ),
+                            ),
+                            const Gap(10),
+                            FloatingActionButton(
+                              heroTag: 'refresh',
+                              onPressed: () {
+                                setState(() {});
+                              },
                             ),
                           ],
                         );
