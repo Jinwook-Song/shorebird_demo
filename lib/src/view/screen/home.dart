@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('Shorebird 23'),
+                  const Text('Shorebird 28'),
                   Text(S.of(context).intl),
                   const Divider(),
                   Text(ref.read(appInfoProvider).getAppName()),
